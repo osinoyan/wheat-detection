@@ -45,21 +45,39 @@ pip install -r requirements.txt
 Download the dataset from [kaggle](https://www.kaggle.com/c/global-wheat-detection/data) and unzip *global-wheat-detection.zip* under the directory *data/*.
 Make sure to place the data like below:
 ```
-    data/
-    +- sample_submission.csv
-    +- train.csv
-    +- test/
-    |   +- 2fd875eaa.jpg
-    |   +- ...
-    +- train/
-    |   +- 0a3cb453f.jpg
-    |   +- ...
+    wheat-detection/
+        +- data/
+        |   +- sample_submission.csv
+        |   +- train.csv
+        |   +- test/
+        |   |   +- 2fd875eaa.jpg
+        |   |   +- ...
+        |   +- train/
+        |   |   +- 0a3cb453f.jpg
+        |   |   +- ...
+        ... ...
 ```
 
 
 ## Training
 We briefly provide the instructions to train the model
 
+### Get EfficientDet model
+Unfortunately, you have to download the weights manually.
+Download *efficientdet_d5-ef44aea8.pth* from [This link](https://www.kaggle.com/mathurinache/efficientdet?select=efficientdet_d5-ef44aea8.pth) and make sure to place it under the directory *efficientdet_model/* like below:
+```
+    wheat-detection/
+        +- efficientdet_model/
+        |   +- efficientdet_d5-ef44aea8.pth
+        +- data/
+        +- timm-efficientdet-pytorch-revised/
+        +- weighted-boxes-fusion/
+        |
+        ...
+```
+
+### Start training
+Just run this:
 ```
 python train.py
 ```
