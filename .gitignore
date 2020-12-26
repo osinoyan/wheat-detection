@@ -1,0 +1,5 @@
+.vscode
+data/test
+data/train
+efficientdet_model/*
+results*
