@@ -45,7 +45,8 @@ from effdet.efficientdet import HeadNet
 
 root_dir = 'data'  # for colab
 train_dir = os.path.join(root_dir, 'train')
-train_csv_path = os.path.join(root_dir, 'train_psu.csv')  # --------------------------- PSEUDO LABEDED by 76 epoch model
+train_csv_path = os.path.join(root_dir, 'train_psu_rp54.csv')  # --------------------------- PSEUDO LABEDED by 76 epoch model
+print(f'training on {train_csv_path}')
 
 # bbox marking dataframe
 df_mark = pd.read_csv(train_csv_path)
@@ -334,8 +335,8 @@ class Fitter:
                 self.best_summary_loss = summary_loss.avg
                 self.model.eval()
                 self.save(f'{self.base_dir}/best-checkpoint-{str(self.epoch).zfill(3)}epoch.bin')
-                for path in sorted(glob(f'{self.base_dir}/best-checkpoint-*epoch.bin'))[:-3]:
-                    os.remove(path)
+                # for path in sorted(glob(f'{self.base_dir}/best-checkpoint-*epoch.bin'))[:-3]:
+                #     os.remove(path)
 
             if self.config.validation_scheduler:
                 self.scheduler.step(metrics=summary_loss.avg)
@@ -430,7 +431,7 @@ class Fitter:
 class TrainGlobalConfig:
     num_workers = 2
     batch_size = 4 
-    n_epochs = 100 # n_epochs = 40
+    n_epochs = 20 # n_epochs = 40
     lr = 0.0002
 
     folder = 'resultsaaaa'
@@ -517,8 +518,8 @@ else:
 
 print('Start training...')
 run_training(
-    ckpt='',
-    output_folder='results_no_fold_psu_0'
+    ckpt='results_nfp54/best-checkpoint-019epoch.bin',
+    output_folder='results_nfp54'
     )
 print('YEEEE! End of training.')
 print(f'output folder: {TrainGlobalConfig.folder}')

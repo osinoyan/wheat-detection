@@ -360,6 +360,6 @@ else:
 """### Start Testing ⭐"""
 
 run_testing(
-    ckpt='results/best-checkpoint-076epoch_1226.bin',
-    output='train_psu.csv'
+    ckpt='results_psu_0/r-p-best-checkpoint-054epoch.bin',
+    output='train_psu_rp54.csv'
     )
